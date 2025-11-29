@@ -1,6 +1,6 @@
-import axios from "axios";
+const axios = require("axios");
 
-export const handler = async (event, context) => {
+exports.handler = async (event, context) => {
   const body = JSON.parse(event.body);
 
   try {
@@ -14,10 +14,7 @@ export const handler = async (event, context) => {
         customer_name: body.name,
         customer_email: body.email,
         customer_mobile: body.mobile,
-        redirect_url: "https://YOUR-NETLIFY-SITE.netlify.app/success",
-        udf1: "test1",
-        udf2: "test2",
-        udf3: "test3"
+        redirect_url: "https://YOUR-NETLIFY-SITE.netlify.app/success"
       }
     );
 
@@ -26,10 +23,10 @@ export const handler = async (event, context) => {
       body: JSON.stringify(response.data),
     };
 
-  } catch (error) {
+  } catch (err) {
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: error.message }),
+      body: JSON.stringify({ error: err.message }),
     };
   }
 };
