@@ -1,6 +1,6 @@
 const axios = require("axios");
 
-exports.handler = async (event, context) => {
+exports.handler = async (event) => {
   const body = JSON.parse(event.body);
 
   try {
@@ -14,7 +14,7 @@ exports.handler = async (event, context) => {
         customer_name: body.name,
         customer_email: body.email,
         customer_mobile: body.mobile,
-        redirect_url: "https://YOUR-NETLIFY-SITE.netlify.app/success"
+        redirect_url: "https://upi345.netlify.app/success"
       }
     );
 
@@ -26,7 +26,7 @@ exports.handler = async (event, context) => {
   } catch (err) {
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: err.message }),
+      body: JSON.stringify({ error: err.message })
     };
   }
 };
