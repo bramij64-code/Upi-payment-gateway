@@ -1,0 +1,24 @@
+<button onclick="payNow()">Add Coins</button>
+
+<script>
+async function payNow() {
+    let res = await fetch("/.netlify/functions/create-order", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            amount: 10,
+            name: "Raj",
+            email: "raj@example.com",
+            mobile: "9999999999"
+        })
+    });
+
+    let data = await res.json();
+
+    if (data.status === true) {
+        window.location.href = data.data.payment_url;
+    } else {
+        alert("Error creating order");
+    }
+}
+</script>
